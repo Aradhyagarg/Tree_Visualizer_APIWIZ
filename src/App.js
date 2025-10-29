@@ -9,7 +9,6 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { Search, Moon, Sun, Trash2, Copy, Download, CheckCircle, XCircle } from 'lucide-react';
 
-/* ------------------ Custom Node Component ------------------ */
 const CustomNode = ({ data }) => {
   const [copied, setCopied] = useState(false);
 
@@ -56,7 +55,6 @@ const nodeTypes = {
   custom: CustomNode,
 };
 
-/* ------------------ Sample JSON ------------------ */
 const sampleJSON = `{
   "user": {
     "id": 1,
@@ -75,7 +73,6 @@ const sampleJSON = `{
   }
 }`;
 
-/* ------------------ App ------------------ */
 export default function App() {
   const [jsonInput, setJsonInput] = useState(sampleJSON);
   const [searchQuery, setSearchQuery] = useState('');
@@ -242,28 +239,23 @@ export default function App() {
     if (!reactFlowInstance || nodes.length === 0) return;
     
     try {
-      // Import html2canvas dynamically
-      const html2canvas = (await import('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm')).default;
+      const html2canvas = (await import('html2canvas')).default;
       
-      // Get the React Flow wrapper element
       const flowElement = document.querySelector('.reactflow-wrapper');
       if (!flowElement) return;
 
-      // Capture the element as canvas
       const canvas = await html2canvas(flowElement, {
         backgroundColor: darkMode ? '#0f172a' : '#ffffff',
-        scale: 2, // Higher quality
+        scale: 2,
         logging: false,
         useCORS: true,
       });
 
-      // Add watermark
       const ctx = canvas.getContext('2d');
       ctx.font = '16px Arial';
       ctx.fillStyle = darkMode ? '#9ca3af' : '#6b7280';
       ctx.fillText('JSON Tree Visualizer', 20, canvas.height - 20);
 
-      // Convert to blob and download
       canvas.toBlob((blob) => {
         const link = document.createElement('a');
         link.download = `json-tree-${Date.now()}.png`;
@@ -304,7 +296,7 @@ export default function App() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <div className="space-y-4">
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 md:p-6">
-              <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">📝 Paste or type JSON data</label>
+              <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">Paste or type JSON data</label>
               <textarea
                 value={jsonInput}
                 onChange={(e) => setJsonInput(e.target.value)}
@@ -321,7 +313,7 @@ export default function App() {
 
             <div className="flex gap-2">
               <button onClick={generateTree} className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105">
-                🌳 Generate Tree
+                Generate Tree
               </button>
               <button onClick={handleClear} className="px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 shadow-md">
                 <Trash2 size={18} />
@@ -334,7 +326,7 @@ export default function App() {
 
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 md:p-6 space-y-4">
             <div>
-              <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">🔍 Search by JSON path</label>
+              <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">Search by JSON path</label>
               <div className="flex gap-2 mb-3">
                 <input
                   type="text"
@@ -358,7 +350,7 @@ export default function App() {
             </div>
 
             <div className="mt-4 p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 rounded-lg border border-blue-200 dark:border-gray-700">
-              <h3 className="font-bold mb-3 text-gray-800 dark:text-gray-200">📚 How to Use</h3>
+              <h3 className="font-bold mb-3 text-gray-800 dark:text-gray-200">How to Use</h3>
               <ul className="text-sm space-y-2 text-gray-700 dark:text-gray-300">
                 <li>Paste valid JSON and click <strong>Generate Tree</strong>.</li>
                 <li>Search with JSON path e.g., <code className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">$.user.name</code>.</li>
@@ -368,7 +360,7 @@ export default function App() {
             </div>
 
             <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <h3 className="font-bold mb-3 text-gray-800 dark:text-gray-200">🎨 Node Types</h3>
+              <h3 className="font-bold mb-3 text-gray-800 dark:text-gray-200">Node Types</h3>
               <div className="space-y-2">
                 <div className="flex items-center gap-3 text-white"><div className="w-4 h-4 rounded bg-blue-500" /> <span className="text-sm">Object nodes</span></div>
                 <div className="flex items-center gap-3 text-white"><div className="w-4 h-4 rounded bg-green-500" /> <span className="text-sm">Array nodes</span></div>
@@ -410,7 +402,7 @@ export default function App() {
         </div>
 
         <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-          <p>Made with ❤️ — JSON Tree Visualizer</p>
+          <p>Made with Love JSON Tree Visualizer</p>
         </div>
       </div>
     </div>
