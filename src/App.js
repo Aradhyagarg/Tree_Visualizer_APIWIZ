@@ -173,4 +173,21 @@ export default function App() {
 
     return nodesArr;
   };
+
+  const generateTree = () => {
+    try {
+      const parsed = JSON.parse(jsonInput);
+      setError('');
+      const { nodes: builtNodes, edges: builtEdges } = buildTree(parsed);
+      const layouted = layoutNodes(builtNodes, builtEdges);
+      setNodes(layouted);
+      setEdges(builtEdges);
+      setSearchMessage('');
+    } catch (err) {
+      setError('Invalid JSON: ' + err.message);
+      setNodes([]);
+      setEdges([]);
+    }
+  };
+  
 }
