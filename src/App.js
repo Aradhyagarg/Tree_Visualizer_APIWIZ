@@ -99,4 +99,45 @@ export default function App() {
     }
   };
 
+  const buildTree = useCallback((obj) => {
+    const nodesList = [];
+    const edgesList = [];
+    let nodeId = 0;
+
+    const traverse = (value, parent, keyName, currentPath) => {
+      const id = `node-${nodeId++}`;
+      if (Array.isArray(value)) {
+        nodesList.push({
+          id,
+          type: 'custom',
+          position: { x: 0, y: 0 },
+          data: { label: keyName, path: currentPath, nodeColor: getNodeColor('array'), isHighlighted: false },
+        });
+        if (parent) edgesList.push({ id: `edge-${parent}-${id}`, source: parent, target: id, type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } });
+        value.forEach((item, idx) => traverse(item, id, `[${idx}]`, `${currentPath}[${idx}]`));
+      } else if (typeof value === 'object' && value !== null) {
+        nodesList.push({
+          id,
+          type: 'custom',
+          position: { x: 0, y: 0 },
+          data: { label: keyName, path: currentPath, nodeColor: getNodeColor('object'), isHighlighted: false },
+        });
+        if (parent) edgesList.push({ id: `edge-${parent}-${id}`, source: parent, target: id, type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } });
+        Object.entries(value).forEach(([k, v]) => traverse(v, id, k, `${currentPath}.${k}`));
+      } else {
+        nodesList.push({
+          id,
+          type: 'custom',
+          position: { x: 0, y: 0 },
+          data: { label: keyName, value: value, path: currentPath, nodeColor: getNodeColor('primitive'), isHighlighted: false },
+        });
+        if (parent) edgesList.push({ id: `edge-${parent}-${id}`, source: parent, target: id, type: 'smoothstep', markerEnd: { type: MarkerType.ArrowClosed } });
+      }
+      return id;
+    };
+
+    traverse(obj, null, 'root', '$');
+    return { nodes: nodesList, edges: edgesList };
+  }, []);
+
 }
