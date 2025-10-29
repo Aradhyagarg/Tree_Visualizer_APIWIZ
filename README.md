@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# JSON Tree Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Live Demo:** [https://tree-visualizer-apiwiz-uvgt.vercel.app/](https://tree-visualizer-apiwiz-uvgt.vercel.app/)
 
-## Available Scripts
+An interactive and beautiful **JSON Tree Visualizer** built with **React** and **React Flow**, allowing you to explore, search, and download visual representations of your JSON data all with dark/light mode and intuitive controls.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Dark / Light Mode Toggle** — Switch themes instantly for a comfortable view  
+- **Clear / Reset Button** — Reset input, search, and visualization in one click  
+- **Copy JSON Path** — Click on any node to instantly copy its JSON path  
+- **Download as Image** — Export the tree visualization as a PNG image  
+- **Smart Search** — Highlight and zoom to nodes by JSON path  
+- **Auto Layout** — Nodes are neatly organized in a hierarchical layout  
+- **Hover Info** — See node details, types, and values at a glance  
+- **Responsive UI** — Works seamlessly across screen sizes  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## How to Use
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Paste valid JSON into the input box  
+2. Click **Generate Tree** to visualize  
+3. Use the **search box** to find nodes (e.g. `$.user.address.city`)  
+4. Click a node’s copy icon to **copy its JSON path**  
+5. Click **Download** to save the tree as an image  
+6. Use the **Moon/Sun toggle** for Dark or Light Mode  
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
