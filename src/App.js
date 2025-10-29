@@ -140,4 +140,37 @@ export default function App() {
     return { nodes: nodesList, edges: edgesList };
   }, []);
 
+  const layoutNodes = (nodesArr, edgesArr) => {
+    const levels = {};
+    const getLevel = (nodeId, visited = new Set()) => {
+      if (visited.has(nodeId)) return 0;
+      visited.add(nodeId);
+      const parents = edgesArr.filter(e => e.target === nodeId);
+      if (parents.length === 0) return 0;
+      return 1 + Math.max(...parents.map(p => getLevel(p.source, visited)));
+    };
+
+    nodesArr.forEach(node => {
+      const level = getLevel(node.id);
+      if (!levels[level]) levels[level] = [];
+      levels[level].push(node);
+    });
+
+    const levelKeys = Object.keys(levels).map(Number).sort((a, b) => a - b);
+    const levelHeight = 110;
+    const nodeWidth = 220;
+
+    levelKeys.forEach(level => {
+      const arr = levels[level];
+      const levelWidth = arr.length * nodeWidth;
+      arr.forEach((node, i) => {
+        node.position = {
+          x: i * nodeWidth - levelWidth / 2 + nodeWidth / 2,
+          y: level * levelHeight,
+        };
+      });
+    });
+
+    return nodesArr;
+  };
 }
