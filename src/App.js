@@ -75,12 +75,16 @@ const sampleJSON = `{
 
 export default function App() {
   const [jsonInput, setJsonInput] = useState(sampleJSON);
-const [searchQuery, setSearchQuery] = useState('');
-const [searchMessage, setSearchMessage] = useState('');
-const [error, setError] = useState('');
-const [darkMode, setDarkMode] = useState(false);
-const [nodes, setNodes, onNodesChange] = useNodesState([]);
-const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  return <div>JSON Tree Visualizer</div>;
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchMessage, setSearchMessage] = useState('');
+  const [error, setError] = useState('');
+  const [darkMode, setDarkMode] = useState(false);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+
+  useEffect(() => {
+    if (darkMode) document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  }, [darkMode]);
 }
