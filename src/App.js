@@ -55,6 +55,24 @@ const nodeTypes = {
   custom: CustomNode,
 };
 
+const sampleJSON = `{
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "address": {
+      "city": "New York",
+      "country": "USA",
+      "zipCode": "10001"
+    },
+    "items": [
+      { "name": "item1", "price": 29.99 },
+      { "name": "item2", "price": 49.99 }
+    ],
+    "active": true
+  }
+}`;
+
 export default function App() {
   const [jsonInput, setJsonInput] = useState(sampleJSON);
 const [searchQuery, setSearchQuery] = useState('');
