@@ -87,4 +87,16 @@ export default function App() {
     if (darkMode) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   }, [darkMode]);
+
+  const getNodeColor = (type) => {
+    switch (type) {
+      case 'object':
+        return 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-700';
+      case 'array':
+        return 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-200 dark:border-green-700';
+      default:
+        return 'bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 border-orange-200 dark:border-orange-700';
+    }
+  };
+
 }
