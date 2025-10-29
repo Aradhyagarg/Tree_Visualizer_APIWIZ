@@ -189,5 +189,40 @@ export default function App() {
       setEdges([]);
     }
   };
-  
+
+  const handleSearch = () => {
+    if (!searchQuery.trim()) {
+      setSearchMessage('Please enter a search query');
+      setTimeout(() => setSearchMessage(''), 2000);
+      return;
+    }
+
+    let found = false;
+    const updated = nodes.map(node => {
+      const p = node.data?.path || '';
+      const q = searchQuery.trim();
+
+      const isExact = p === q || p === q.replace(/^\$/, '');
+      const contains = p.includes(q.replace(/^\$\.?/, '')) || q.includes(p);
+      const match = p === q || p.includes(q) || q.includes(p) || p.endsWith(q.replace(/^\$\.?/, ''));
+
+      if (match && !found) {
+        found = true;
+        if (reactFlowInstance) {
+          setTimeout(() => {
+            reactFlowInstance.setCenter(node.position.x, node.position.y, { zoom: 1.2, duration: 700 });
+          }, 80);
+        }
+      }
+
+      return {
+        ...node,
+        data: { ...node.data, isHighlighted: match },
+      };
+    });
+
+    setNodes(updated);
+    setSearchMessage(found ? 'Match found!' : 'No match found');
+    setTimeout(() => setSearchMessage(''), 2000);
+  };
 }
