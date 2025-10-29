@@ -1,25 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback, useEffect } from 'react';
+import ReactFlow, {
+  Controls,
+  Background,
+  useNodesState,
+  useEdgesState,
+  MarkerType,
+} from 'reactflow';
+import 'reactflow/dist/style.css';
+import { Search, Moon, Sun, Trash2, Copy, Download, CheckCircle, XCircle } from 'lucide-react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+  return <div>JSON Tree Visualizer</div>;
 }
-
-export default App;

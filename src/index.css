@@ -1,13 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App defaults */
+html, body, #root {
+  height: 100%;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gray-50;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* small helper to ensure reactflow nodes render nicely */
+.react-flow__node-custom {
+  max-width: 260px;
 }
